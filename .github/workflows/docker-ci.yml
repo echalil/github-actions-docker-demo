@@ -39,6 +39,3 @@ jobs:
       - name: Push Docker Image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/node-docker-demo:latest
 
-      - name: Deploy (可选，如果你有服务器)
-        run: |
-          echo "Deployment steps can be added here, e.g., SSH to a server and restart the contai
