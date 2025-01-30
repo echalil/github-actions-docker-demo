@@ -3,27 +3,21 @@ const { Client } = require("pg"); // 引入 PostgreSQL 连接库
 const app = express();
 
 // 连接数据库
-const { Client } = require("pg");
+// 连接数据库
+const { Client } = require("pg");  // ✅ 确保正确导入
 
-const client = new Client({
+const client = new Client({  // ✅ 变量名小写
   connectionString: process.env.DATABASE_URL,  // 读取环境变量
   ssl: {
     rejectUnauthorized: false,  // 适用于 Railway 部署
   },
 });
 
-// 只需要这一次 client.connect()，删掉多余的调用
+// 只需要一次连接
 client.connect()
-  .then(() => console.log("Connected to PostgreSQL"))
-  .catch(err => console.error("Database connection error:", err));
+  .then(() => console.log("✅ Connected to PostgreSQL"))
+  .catch(err => console.error("❌ Database connection error:", err));
 
-
-client.connect()
-  .then(() => console.log("Connected to PostgreSQL"))
-  .catch(err => console.error("Database connection error:", err));
-
-
-client.connect();
 
 // 确保 users 表存在
 client.query(
