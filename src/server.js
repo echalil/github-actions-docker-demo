@@ -4,11 +4,10 @@ const app = express();
 
 // 连接数据库
 const client = new Client({
-  user: "myuser",
-  host: "db",
-  database: "mydb",
-  password: "mypassword",
-  port: 5432,
+  connectionString: process.env.DATABASE_URL, // 读取 Railway 环境变量
+  ssl: {
+      rejectUnauthorized: false // 兼容 Railway 的 PostgreSQL
+  }
 });
 
 client.connect();
