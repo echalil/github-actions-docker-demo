@@ -12,6 +12,12 @@ const client = new Client({
   },
 });
 
+// 只需要这一次 client.connect()，删掉多余的调用
+client.connect()
+  .then(() => console.log("Connected to PostgreSQL"))
+  .catch(err => console.error("Database connection error:", err));
+
+
 client.connect()
   .then(() => console.log("Connected to PostgreSQL"))
   .catch(err => console.error("Database connection error:", err));
