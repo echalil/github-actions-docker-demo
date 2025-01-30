@@ -3,12 +3,19 @@ const { Client } = require("pg"); // 引入 PostgreSQL 连接库
 const app = express();
 
 // 连接数据库
+const { Client } = require("pg");
+
 const client = new Client({
-  connectionString: process.env.DATABASE_URL, // 读取 Railway 环境变量
+  connectionString: process.env.DATABASE_URL,  // 读取环境变量
   ssl: {
-      rejectUnauthorized: false // 兼容 Railway 的 PostgreSQL
-  }
+    rejectUnauthorized: false,  // 适用于 Railway 部署
+  },
 });
+
+client.connect()
+  .then(() => console.log("Connected to PostgreSQL"))
+  .catch(err => console.error("Database connection error:", err));
+
 
 client.connect();
 
